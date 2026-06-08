@@ -1,97 +1,68 @@
-# Rockaway Q / QAQ Meeting Prep Skill
+# Rockaway Q / QAQ Meeting Prep
 
-This package installs a private meeting-prep skill for Rockaway Q / QAQ. It scans the user's connected calendar/account context, retrieves the relevant institutional memory from the read-only Rockaway Q MCP brain, and produces a dense PDF packet for the remaining meetings in scope.
+This adds a meeting-prep helper to Codex or Claude Code.
 
-The skill produces three outputs every run:
+It looks at your calendar, checks the Rockaway Q / QAQ brain, and creates a private meeting-prep packet for your upcoming meetings.
 
-- PDF packet: the primary meeting-prep artifact.
-- Markdown source: editable notes with full source trail.
-- Chat summary: compact links and top priorities.
+You get:
 
-## Easiest Install
+- a polished PDF packet
+- an editable markdown version
+- a short chat summary with the most important points
 
-Open the GitHub repository, click **Code**, then **Download ZIP**. Unzip it and double-click:
+## Install
+
+Open Terminal and paste this:
+
+```bash
+npx -y skills@latest add zabrodsk/rockaway-qaq-meeting-prep-skill -g --agent codex claude-code --copy -y --full-depth && "$HOME/.agents/skills/rockaway-q-meeting-prep/setup.command"
+```
+
+The setup will ask for your bearer token.
+
+## If You Want Codex Or Claude To Do It
+
+Send this message:
 
 ```text
-setup.command
+please install the meeting prep skill from the GitHub repo and run the setup command. This is my bearer token:
 ```
 
-The setup window will ask for your bearer token and put it in the right local place.
+Then paste your bearer token after the colon.
 
-One-command install for people who already have GitHub CLI:
+## How To Use It
 
-```bash
-/bin/bash -lc 'tmp=$(mktemp -d); gh repo clone zabrodsk/rockaway-qaq-meeting-prep-skill "$tmp/skill" -- --depth 1 && "$tmp/skill/setup.command"'
-```
+After setup, restart Codex or Claude Code.
 
-## Manual Install
-
-```bash
-git clone https://github.com/zabrodsk/rockaway-qaq-meeting-prep-skill.git
-cd rockaway-qaq-meeting-prep-skill
-./setup.command
-```
-
-Restart Codex or Claude Code after installation if it was already open.
-
-## Configure Rockaway Q / QAQ MCP
-
-Ask the Rockaway brain admin for your Q / QAQ bearer token. During setup, paste it into the Terminal window when asked. Do not paste the token into chat or shared docs.
-
-Claude Code:
-
-```bash
-claude mcp add rockaway-q --transport http \
-  http://100.102.180.108:8788/rockaway-q/mcp \
-  --header "Authorization: Bearer USER_TOKEN"
-```
-
-Codex CLI:
-
-```bash
-export ROCKAWAY_Q_MCP_TOKEN="USER_TOKEN"
-codex mcp add rockaway-q \
-  --url http://100.102.180.108:8788/rockaway-q/mcp \
-  --bearer-token-env-var ROCKAWAY_Q_MCP_TOKEN
-codex mcp get rockaway-q
-```
-
-Codex config equivalent in `~/.codex/config.toml`:
-
-```toml
-[mcp_servers.rockaway-q]
-url = "http://100.102.180.108:8788/rockaway-q/mcp"
-bearer_token_env_var = "ROCKAWAY_Q_MCP_TOKEN"
-```
-
-The `ROCKAWAY_Q_MCP_TOKEN` environment variable must be available to the Codex process when it starts.
-
-## Use
+Then ask:
 
 ```text
 $rockaway-q-meeting-prep prep me for today
+```
+
+You can also ask:
+
+```text
 $rockaway-q-meeting-prep prep me for my next meeting
 $rockaway-q-meeting-prep prep me for tomorrow
 ```
 
-By default, `today` means remaining meetings from now onward. Use "whole day" or "include past meetings" if you want the full date.
+## Where The Packet Goes
 
-## Output Location
-
-```text
-~/Rockaway Meeting Briefs/q/YYYY-MM-DD/
-  rockaway-q-meeting-prep-YYYY-MM-DD.pdf
-  rockaway-q-meeting-prep-YYYY-MM-DD.md
-  rockaway-q-meeting-prep-YYYY-MM-DD.html
-  rockaway-q-meeting-prep-YYYY-MM-DD.json
-```
-
-Same-day reruns overwrite the default files.
-
-## Guide
-
-Open the PDF introduction:
+The files are saved here:
 
 ```text
-docs/Rockaway Q QAQ Meeting Prep Skill.pdf
+~/Rockaway Meeting Briefs/q/
 ```
+
+Open the PDF first. The markdown file is there if you want to inspect sources or edit the notes.
+
+## Setup Guide
+
+Open this PDF:
+
+[Rockaway Q QAQ Meeting Prep Skill.pdf](docs/Rockaway%20Q%20QAQ%20Meeting%20Prep%20Skill.pdf)
+
+## Need A Token?
+
+Ask the Rockaway brain admin for a Rockaway Q / QAQ bearer token.

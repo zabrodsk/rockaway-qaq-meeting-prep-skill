@@ -87,13 +87,21 @@ Do not include blank note-taking space.
 
 ## Rendering
 
-Build a structured JSON packet, then call the hidden shared renderer:
+Build a structured JSON packet, then call the bundled renderer from this skill folder. In Claude Code, prefer `${CLAUDE_SKILL_DIR}`:
 
 ```bash
-"$HOME/.codex/skills/.rockaway-meeting-prep-common/scripts/render_packet.js" \
+"${CLAUDE_SKILL_DIR}/.rockaway-meeting-prep-common/scripts/render_packet.js" \
   --input /path/to/packet.json \
   --out-dir "$HOME/Rockaway Meeting Briefs/q/YYYY-MM-DD" \
   --slug rockaway-q-meeting-prep-YYYY-MM-DD
+```
+
+If `${CLAUDE_SKILL_DIR}` is unavailable, look for the renderer in:
+
+```text
+$HOME/.codex/skills/rockaway-q-meeting-prep/.rockaway-meeting-prep-common/scripts/render_packet.js
+$HOME/.claude/skills/rockaway-q-meeting-prep/.rockaway-meeting-prep-common/scripts/render_packet.js
+$HOME/.agents/skills/rockaway-q-meeting-prep/.rockaway-meeting-prep-common/scripts/render_packet.js
 ```
 
 The JSON is the source of truth. The renderer writes JSON, markdown, HTML, and PDF. PDF rendering uses headless Chrome.
