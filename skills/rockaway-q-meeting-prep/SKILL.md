@@ -17,7 +17,7 @@ http://100.102.180.108:8788/rockaway-q/mcp
 ```
 
 Do not query Rockaway Ventures unless the user explicitly asks for cross-brain context. Never print or store bearer tokens.
-QMD search runs centrally on the Mac mini through this MCP using a sanitized Q / QAQ QMD index; no separate QMD install is needed on the user's machine.
+QMD search runs as a separate Mac mini QMD MCP; no local QMD install is needed. Existing GBrain MCP remains canonical for page expansion, links, backlinks, and stats.
 
 ## Scope Rules
 
@@ -35,12 +35,14 @@ Default to every in-scope calendar meeting for the user running the skill. For p
 
 For each meeting, do bounded-but-serious retrieval:
 
-1. Use `memory_lookup` first for broad recall across exact title, recurring-series title, product/project/customer/workflow/ops/initiative handles, key attendees, prior discussion, open items, blockers, next steps, risks, and ownership context.
-2. Use `get_page` for the strongest high/medium confidence slug hits from `memory_lookup`.
-3. Use `get_links` / `get_backlinks` for the top 1-3 central pages when ownership, relationship, or graph context matters.
-4. Use lower-level `qmd_query`, `qmd_search`, `search`, and `query` only when the first pass is weak or the user asks for deeper retrieval.
+1. Use `rockaway-q-qmd.status` if connection/index state is uncertain.
+2. Use `rockaway-q-qmd.query` first for broad recall across exact title, recurring-series title, product/project/customer/workflow/ops/initiative handles, key attendees, prior discussion, open items, blockers, next steps, risks, and ownership context. Always scope it with `collections: ["rockaway-q"]`.
+3. Use `rockaway-q-qmd.get` for the best QMD source before using retrieved facts.
+4. Use `rockaway-q.get_page` for the strongest canonical slug hits when full detail is useful.
+5. Use `rockaway-q.get_links` / `rockaway-q.get_backlinks` for the top 1-3 central pages when ownership, relationship, or graph context matters.
+6. Use `rockaway-q.memory_lookup`, `rockaway-q.search`, or `rockaway-q.query` only as GBrain fallback when native QMD is weak or unavailable.
 
-`memory_lookup` is the stable first-call entrypoint. It uses the endpoint-scoped QMD index first when available and falls back to GBrain. QMD is additive retrieval behind the MCP, not the source of truth for page graph structure. Existing GBrain tools remain canonical for page expansion, links, backlinks, and stats.
+Native QMD is the first retrieval layer for broad semantic recall. GBrain remains canonical for page expansion, links, backlinks, and stats.
 
 For "last time", prefer the previous recurring occurrence; then title/attendee/topic matches; then widen to related pages from the last 90 days. If retrieval is weak, include `Could Not Verify` only for that meeting.
 
