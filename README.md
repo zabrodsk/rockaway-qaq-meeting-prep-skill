@@ -8,8 +8,7 @@ Agents should use `rockaway-q-qmd` first for broad recall, then `rockaway-q` for
 
 You get:
 
-- a polished PDF packet
-- an editable markdown version
+- a polished Word document
 - a short chat summary with the most important points
 
 ## Install
@@ -65,9 +64,10 @@ The files are saved here:
 
 ```text
 ~/Rockaway Meeting Briefs/q/
+  YYYY-MM-DD/rockaway-q-meeting-prep-YYYY-MM-DD.docx
 ```
 
-Open the PDF first. The markdown file is there if you want to inspect sources or edit the notes.
+Open the Word document first. The chat summary is there for the highest-priority reminders.
 
 ## Setup Guide
 
