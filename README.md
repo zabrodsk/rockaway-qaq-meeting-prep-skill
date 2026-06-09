@@ -17,7 +17,7 @@ You get:
 Open Terminal and paste this:
 
 ```bash
-npx -y skills@latest add zabrodsk/rockaway-qaq-meeting-prep-skill -g -a codex claude-code --copy -y --full-depth && "$HOME/.agents/skills/rockaway-q-meeting-prep/setup.command"
+npx -y skills@latest add zabrodsk/rockaway-qaq-meeting-prep-skill -g -a codex claude-code --copy -y --full-depth && "$HOME/.codex/skills/rockaway-q-meeting-prep/setup.command"
 ```
 
 The setup will ask for your bearer token.
