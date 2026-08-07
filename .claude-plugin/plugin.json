@@ -1,0 +1,8 @@
+{
+  "name": "rockaway-q-meeting-prep",
+  "version": "1.0.0",
+  "description": "Prepare private Q and QAQ meeting briefs from calendar and brain context.",
+  "author": {"name": "Rockaway Q"},
+  "skills": "./skills/",
+  "mcpServers": "./.claude-mcp.json"
+}

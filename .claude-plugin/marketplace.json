@@ -1,0 +1,6 @@
+{
+  "name": "rockaway-q-meeting-prep",
+  "owner": {"name": "Rockaway Q"},
+  "metadata": {"description": "Private Rockaway Q and QAQ meeting preparation"},
+  "plugins": [{"name":"rockaway-q-meeting-prep","description":"Prepare private Q and QAQ meeting briefs.","source":"./"}]
+}

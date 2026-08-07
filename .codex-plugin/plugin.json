@@ -1,0 +1,17 @@
+{
+  "name": "rockaway-q-meeting-prep",
+  "version": "1.0.0",
+  "description": "Prepare private Q and QAQ meeting briefs from calendar and brain context.",
+  "skills": "./skills/",
+  "mcpServers": "./.codex-mcp.json",
+  "interface": {
+    "displayName": "Q Meeting Prep",
+    "shortDescription": "Prepare today's Q meetings",
+    "longDescription": "Prepare a private Word meeting brief and concise chat summary using calendar context and the read-only Q brain.",
+    "developerName": "Rockaway Q",
+    "category": "Productivity",
+    "capabilities": ["Read"],
+    "defaultPrompt": ["Prep me for today's remaining meetings.", "Prep me for my next meeting."],
+    "brandColor": "#14A66F"
+  }
+}

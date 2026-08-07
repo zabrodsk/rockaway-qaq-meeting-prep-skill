@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "rockaway-q-meeting-prep",
+  "version": "1.0.0",
+  "description": "Prepare private Rockaway Q and QAQ meeting briefs using calendar context and the read-only Q brain.",
+  "author": {"name": "Rockaway Q", "url": "https://www.rockawayq.com"},
+  "homepage": "https://github.com/zabrodsk/rockaway-qaq-meeting-prep-skill",
+  "repository": "https://github.com/zabrodsk/rockaway-qaq-meeting-prep-skill",
+  "license": "Proprietary",
+  "keywords": ["rockaway", "q", "qaq", "meetings", "calendar", "brief", "mcp"]
+}

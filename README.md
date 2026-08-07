@@ -1,80 +1,56 @@
 # Rockaway Q / QAQ Meeting Prep
 
-This adds a meeting-prep helper to Codex or Claude Code.
+This private Agent Plugin prepares upcoming Rockaway Q and QAQ meetings from your calendar and the read-only Q brain.
 
-It looks at your calendar, checks the Rockaway Q / QAQ brain, and creates a private meeting-prep packet for your upcoming meetings.
-QMD search runs as a separate Mac mini QMD MCP; no local QMD install is needed. Existing GBrain MCP remains canonical for page expansion, links, backlinks, and stats.
-Agents should use `rockaway-q-qmd` first for broad recall, then `rockaway-q` for canonical page expansion and graph context.
+Each run creates:
 
-You get:
-
-- a polished Word document
-- a short chat summary with the most important points
+- one polished Word document
+- one short in-chat summary
 
 ## Install
 
-Open Terminal and paste this:
+Connect Tailscale first, then paste the one line for your app.
+
+Codex:
 
 ```bash
-npx -y skills@latest add zabrodsk/rockaway-qaq-meeting-prep-skill -g -a codex claude-code --copy -y --full-depth && "$HOME/.codex/skills/rockaway-q-meeting-prep/setup.command"
+codex plugin marketplace add zabrodsk/rockaway-qaq-meeting-prep-skill && codex plugin add rockaway-q-meeting-prep@rockaway-q-meeting-prep
 ```
 
-The setup will ask for your bearer token.
+Claude Code:
 
-## If You Want Codex Or Claude To Do It
-
-Send this message:
-
-```text
-please install the meeting prep skill from the GitHub repo and run the setup command. This is my bearer token:
+```bash
+claude plugin marketplace add zabrodsk/rockaway-qaq-meeting-prep-skill && claude plugin install rockaway-q-meeting-prep@rockaway-q-meeting-prep
 ```
 
-Then paste your bearer token after the colon.
+The plugin includes meeting prep, fast brain search, and canonical Q brain access. No bearer token or separate QMD installation is needed.
 
-## How To Use It
+## Use
 
-After setup, restart Codex or Claude Code.
-
-Then ask:
+In Codex:
 
 ```text
 $rockaway-q-meeting-prep prep me for today
 ```
 
-You can also ask:
+In Claude Code:
 
 ```text
-$rockaway-q-meeting-prep prep me for my next meeting
-$rockaway-q-meeting-prep prep me for tomorrow
+/rockaway-q-meeting-prep:rockaway-q-meeting-prep prep me for today
 ```
 
-## CSV Or Quick Memory Lookup
+Natural language also works: `Prep me for my next meeting using the Rockaway Q brain.`
 
-For spreadsheet-style lookup, tell Codex or Claude:
+The Word document is saved under `~/Rockaway Meeting Briefs/q/YYYY-MM-DD/`.
 
-```text
-Use Rockaway Q / QAQ QMD first for each CSV row, then use the Q brain MCP for canonical page expansion on the strongest matches.
+## Compatibility Fallback
+
+Older Codex or Claude Code versions can use:
+
+```bash
+npx -y skills@latest add zabrodsk/rockaway-qaq-meeting-prep-skill -g -a codex claude-code --copy -y --full-depth && "$HOME/.codex/skills/rockaway-q-meeting-prep/setup.command"
 ```
-
-Expected output columns: `row_id`, `query`, `qmd_sources`, `gbrain_pages`, `confidence`, `summary`, `recommended_next_step`.
-
-## Where The Packet Goes
-
-The files are saved here:
-
-```text
-~/Rockaway Meeting Briefs/q/
-  YYYY-MM-DD/rockaway-q-meeting-prep-YYYY-MM-DD.docx
-```
-
-Open the Word document first. The chat summary is there for the highest-priority reminders.
 
 ## Setup Guide
 
-Open this PDF:
-
 [Rockaway Q QAQ Meeting Prep Skill.pdf](docs/Rockaway%20Q%20QAQ%20Meeting%20Prep%20Skill.pdf)
-
-## Need A Token?
-
-Ask the Rockaway brain admin for a Rockaway Q / QAQ bearer token.

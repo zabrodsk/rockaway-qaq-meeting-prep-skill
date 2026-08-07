@@ -13,7 +13,7 @@ Use only the Rockaway Q brain MCP:
 
 ```text
 rockaway-q
-http://100.102.180.108:8788/rockaway-q/mcp
+https://clawdbot--mac-mini.taild9e247.ts.net:8446/mcp
 ```
 
 Do not query Rockaway Ventures unless the user explicitly asks for cross-brain context. Never print or store bearer tokens.
